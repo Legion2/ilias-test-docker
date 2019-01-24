@@ -1,0 +1,69 @@
+; <?php exit; ?>
+[server]
+http_path = "http://localhost"
+absolute_path = "/var/www/html/ilias"
+presetting = ""
+timezone = "{{ .Env.TZ }}"
+
+[clients]
+path = "data"
+inifile = "client.ini.php"
+datadir = "/opt/iliasdata"
+default = "myilias"
+list = "0"
+
+[setup]
+pass = "{{ .Env.md5passwd }}"
+
+[tools]
+convert = "/usr/bin/convert"
+zip = "/usr/bin/zip"
+unzip = "/usr/bin/unzip"
+java = "/usr/bin/java"
+ffmpeg = ""
+ghostscript = "/usr/bin/gs"
+latex = ""
+vscantype = "none"
+scancommand = ""
+cleancommand = ""
+enable_system_styles_management = ""
+lessc = ""
+
+[log]
+path = "/opt/iliasdata"
+file = "ilias.log"
+enabled = "0"
+level = "WARNING"
+error_path = ""
+
+[debian]
+data_dir = "/var/opt/ilias"
+log = "/var/log/ilias/ilias.log"
+convert = "/usr/bin/convert"
+zip = "/usr/bin/zip"
+unzip = "/usr/bin/unzip"
+java = ""
+ffmpeg = "/usr/bin/ffmpeg"
+
+[redhat]
+data_dir = ""
+log = ""
+convert = ""
+zip = ""
+unzip = ""
+java = ""
+htmldoc = ""
+
+[suse]
+data_dir = ""
+log = ""
+convert = ""
+zip = ""
+unzip = ""
+java = ""
+htmldoc = ""
+
+[https]
+auto_https_detect_enabled = "0"
+auto_https_detect_header_name = ""
+auto_https_detect_header_value = ""
