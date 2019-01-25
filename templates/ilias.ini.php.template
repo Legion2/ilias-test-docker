@@ -32,11 +32,11 @@ phantomjs = ""
 fop = ""
 
 [log]
-path = ""
-file = ""
-enabled = "0"
+path = "/opt/iliasdata"
+file = "ilias.log"
+enabled = "1"
 level = "WARNING"
-error_path = ""
+error_path = "/opt/iliasdata/errors"
 
 [debian]
 data_dir = "/var/opt/ilias"

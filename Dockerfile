@@ -49,6 +49,8 @@ RUN set -eux; \
         mariadb-server \
         openjdk-8-jdk \
         php7.0 \
+# optional needed for plugins
+        php7.0-curl \
         php7.0-gd \
         php7.0-mysql \
         php7.0-mbstring \
@@ -76,9 +78,9 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-ENTRYPOINT [ "docker-entrypoint.sh" ]
+WORKDIR /var/www/html/ilias
 
-VOLUME  /var/www/html/ilias/Customizing
+ENTRYPOINT [ "docker-entrypoint.sh" ]
 
 RUN set -eux; \
     mkdir -p /opt/iliasdata; \
@@ -87,7 +89,7 @@ RUN set -eux; \
 
 # ilias setup
 
-COPY --from=source /data /data
+COPY --from=source --chown=www-data:www-data /data /data
 
 ENV TZ Europe/Berlin
 
@@ -98,8 +100,6 @@ RUN set -eux; \
     mkdir -p /var/www/html/ilias/data/myilias/usr_images; \
     chown -R www-data:www-data  /var/www/html/ilias/data/myilias; \
     chmod -R 775 /var/www/html/ilias/data; \
-    chmod 666 /data/ilias.ini.php.template; \
-    chmod 666 /data/client.ini.php.template; \
     mkdir -p /opt/iliasdata/myilias/files; \
     mkdir -p /opt/iliasdata/myilias/forum; \
     mkdir -p /opt/iliasdata/myilias/lm_data; \
