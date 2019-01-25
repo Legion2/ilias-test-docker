@@ -13,7 +13,7 @@ default = "myilias"
 list = "0"
 
 [setup]
-pass = "{{ .Env.md5passwd }}"
+pass = "5f4dcc3b5aa765d61d8327deb882cf99"
 
 [tools]
 convert = "/usr/bin/convert"
@@ -28,10 +28,12 @@ scancommand = ""
 cleancommand = ""
 enable_system_styles_management = ""
 lessc = ""
+phantomjs = ""
+fop = ""
 
 [log]
-path = "/opt/iliasdata"
-file = "ilias.log"
+path = ""
+file = ""
 enabled = "0"
 level = "WARNING"
 error_path = ""

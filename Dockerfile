@@ -4,7 +4,7 @@ RUN set -eux; \
     cd /; \
     git clone https://github.com/ILIAS-eLearning/ILIAS.git ilias; \
     cd ilias; \
-    git checkout release_5-2
+    git checkout release_5-3
 
 FROM scratch AS source
 
@@ -78,13 +78,18 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
+VOLUME  /var/www/html/ilias/Customizing
+
+RUN set -eux; \
+    mkdir -p /opt/iliasdata; \
+    chown -R www-data:www-data /opt/iliasdata; \
+    chmod -R 751 /opt/iliasdata
+
 # ilias setup
 
 COPY --from=source /data /data
 
 ENV TZ Europe/Berlin
-ENV ILIAS_MASTER_PASSWORD password
-ENV ILIAS_MAIL ilias@example.com
 
 RUN set -eux; \
     mkdir -p /var/www/html/ilias/data/myilias/css; \
@@ -101,5 +106,3 @@ RUN set -eux; \
     mkdir -p /opt/iliasdata/myilias/mail; \
     chown -R www-data:www-data /opt/iliasdata; \
     chmod -R 751 /opt/iliasdata
-
-VOLUME  /var/www/html/ilias/Customizing
