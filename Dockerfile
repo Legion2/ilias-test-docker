@@ -22,6 +22,8 @@ COPY templates/ilias.ini.php.template /data/
 COPY templates/client.ini.php.template /data/
 COPY templates/iliascleandb.sql /data/
 
+COPY templates/cfg.phpunit.php /data/
+
 FROM ubuntu:16.04
 
 RUN groupadd -r mysql && useradd -r -g mysql mysql
@@ -106,3 +108,11 @@ RUN set -eux; \
     mkdir -p /opt/iliasdata/myilias/mail; \
     chown -R www-data:www-data /opt/iliasdata; \
     chmod -R 751 /opt/iliasdata
+
+# PHPUnit setup
+
+RUN set -eux; \
+    wget https://phar.phpunit.de/phpunit-5.7.phar; \
+    chmod +x phpunit-5.7.phar; \
+    mv phpunit-5.7.phar /usr/local/bin/phpunit; \
+    mv /data/cfg.phpunit.php Services/PHPUnit/config/cfg.phpunit.php
