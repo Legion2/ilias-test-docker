@@ -46,12 +46,13 @@ RUN set -eux; \
     apt-get update; \
     apt-get install -y \
         apache2 \
+        curl \
         imagemagick \
+        less \
         libapache2-mod-php7.0 \
         mariadb-server \
         openjdk-8-jdk \
         php7.0 \
-# optional needed for plugins
         php7.0-curl \
         php7.0-gd \
         php7.0-mysql \
@@ -81,6 +82,11 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 WORKDIR /var/www/html/ilias
+
+LABEL "com.github.actions.name"="Run Ilias plugin"
+LABEL "com.github.actions.description"="Run as Ilias plugin"
+LABEL "com.github.actions.icon"="server"
+LABEL "com.github.actions.color"="blue"
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 

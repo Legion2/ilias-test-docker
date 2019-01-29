@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 /etc/init.d/mysql start
 
@@ -15,4 +15,9 @@ if [ ! -e /data/init ]; then
     touch /data/init
 fi
 
-apache2 -D FOREGROUND
+if [ -z "$1" ]; then
+    apache2 -D FOREGROUND
+else
+    /etc/init.d/apache2 start
+    /bin/sh -c "$@"
+fi
