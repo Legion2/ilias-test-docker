@@ -1,10 +1,11 @@
-FROM alpine/git AS ilias
+FROM alpine AS ilias
 
 RUN set -eux; \
     cd /; \
-    git clone https://github.com/ILIAS-eLearning/ILIAS.git ilias; \
-    cd ilias; \
-    git checkout release_5-3
+    wget -O ilias.zip https://github.com/ILIAS-eLearning/ILIAS/archive/v5.3.12.zip; \
+    unzip ilias.zip; \
+    mv ILIAS-5.3.12 ilias; \
+    rm ilias.zip
 
 FROM scratch AS source
 
