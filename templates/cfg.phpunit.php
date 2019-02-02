@@ -7,6 +7,6 @@
 // After that, you can call phpunit from the ILIAS main directory with
 // the local path of your test files.
 
-$_SESSION["AccountId"] = '6';
-$_POST["username"] = 'root';
+$_SESSION["AccountId"] = '274';
+$_POST["username"] = 'test';
 $_GET["client_id"] = 'myilias';
