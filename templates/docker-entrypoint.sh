@@ -6,6 +6,7 @@ if [ ! -e /data/init ]; then
     dockerize -template /data/ilias.ini.php.template:/var/www/html/ilias/ilias.ini.php
     dockerize -template /data/client.ini.php.template:/var/www/html/ilias/data/myilias/client.ini.php
     sed -i "s|insertsessionexpiredate|$(date -d "+1 week" +%s)|g" /data/iliascleandb.sql
+    sed -i "s|\\\$GLOBALS\['DIC'\]\['ilAuthSession'\]->setUserId(\\\$_SESSION\[\"AccountId\"\])|\$GLOBALS['DIC']['ilAuthSession'];\$_SESSION[\"AccountId\"] = 274;\$GLOBALS['DIC']['ilAuthSession']->setUserId(\$_SESSION[\"AccountId\"])|g" /var/www/html/ilias/Services/PHPUnit/classes/class.ilUnitUtil.php
 
     chmod 666 /var/www/html/ilias/ilias.ini.php
     chmod 666 /var/www/html/ilias/data/myilias/client.ini.php

@@ -18,6 +18,7 @@ COPY templates/php.ini.template /usr/local/etc/php/conf.d/php.ini
 COPY templates/ilias-user.sql /docker-entrypoint-initdb.d/
 
 COPY templates/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY templates/install-plugin.sh /usr/local/bin/install-plugin.sh
 
 COPY templates/ilias.ini.php.template /data/
 COPY templates/client.ini.php.template /data/
@@ -73,7 +74,7 @@ COPY --from=source /usr/local/etc/php/conf.d/php.ini /usr/local/etc/php/conf.d/p
 
 COPY --from=source /docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 
-COPY --from=source /usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+COPY --from=source /usr/local/bin/ /usr/local/bin/
 
 EXPOSE 80
 
