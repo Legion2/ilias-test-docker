@@ -5,6 +5,7 @@
 if [ ! -e /data/init ]; then
     dockerize -template /data/ilias.ini.php.template:/var/www/html/ilias/ilias.ini.php
     dockerize -template /data/client.ini.php.template:/var/www/html/ilias/data/myilias/client.ini.php
+    sed -i "s|insertsessionexpiredate|$(date -d "+1 week" +%s)|g" /data/iliascleandb.sql
 
     chmod 666 /var/www/html/ilias/ilias.ini.php
     chmod 666 /var/www/html/ilias/data/myilias/client.ini.php
