@@ -2,9 +2,9 @@ FROM alpine AS ilias
 
 RUN set -eux; \
     cd /; \
-    wget -O ilias.zip https://github.com/ILIAS-eLearning/ILIAS/archive/v5.3.12.zip; \
+    wget -O ilias.zip https://github.com/ILIAS-eLearning/ILIAS/archive/v5.4.10.zip; \
     unzip ilias.zip; \
-    mv ILIAS-5.3.12 ilias; \
+    mv ILIAS-5.4.10 ilias; \
     rm ilias.zip
 
 FROM scratch AS source
@@ -123,4 +123,5 @@ RUN set -eux; \
     wget https://phar.phpunit.de/phpunit-5.7.phar; \
     chmod +x phpunit-5.7.phar; \
     mv phpunit-5.7.phar /usr/local/bin/phpunit; \
-    mv /data/cfg.phpunit.php Services/PHPUnit/config/cfg.phpunit.php
+    mv /data/cfg.phpunit.php Services/PHPUnit/config/cfg.phpunit.php; \
+    sed -i 's/include_once(\$plugin_php_file);/include($plugin_php_file);/' /var/www/html/ilias/Services/Component/classes/class.ilPluginAdmin.php

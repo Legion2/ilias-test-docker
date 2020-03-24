@@ -1,4 +1,4 @@
-
+## Getting Started
 
 client_id: `myilias`
 
@@ -14,3 +14,10 @@ Login: `test`
 Password: `password`
 PHPSESSID: `j9i00gspeannhe2jhmrpqh3297`
 User ID: `274`
+
+## Development
+### New Ilias version
+For new versions of Ilias the `templates/iliascleandb.sql` must be recreated.
+Start the docker image and open `setup/setup.php` and do all Database Updates.
+Use `mysqldump ilias > iliascleandb.sql` to create the `iliascleandb.sql`.
+Replace the session expire date off all user sessions in the `usr_session` table with the placeholder `insertsessionexpiredate`.
