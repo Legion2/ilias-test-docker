@@ -1,3 +1,8 @@
+Pull this image for docker hub:
+```
+docker pull legion2/ilias-test-docker
+```
+
 ## Getting Started
 
 client_id: `myilias`
