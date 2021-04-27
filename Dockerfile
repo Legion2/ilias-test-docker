@@ -26,7 +26,7 @@ COPY templates/iliascleandb.sql /data/
 
 COPY templates/cfg.phpunit.php /data/
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
@@ -38,7 +38,9 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
+ENV APACHE_RUN_DIR=/var/run/apache2
 ENV APACHE_SERVER_NAME localhost
+ENV DEBIAN_FRONTEND="noninteractive" TZ="Europe/London"
 
 RUN set -eux; \
     { \
@@ -51,14 +53,14 @@ RUN set -eux; \
         curl \
         imagemagick \
         less \
-        libapache2-mod-php7.0 \
+        libapache2-mod-php7.2 \
         mariadb-server \
         openjdk-8-jdk \
-        php7.0 \
-        php7.0-curl \
-        php7.0-gd \
-        php7.0-mysql \
-        php7.0-mbstring \
+        php7.2 \
+        php7.2-curl \
+        php7.2-gd \
+        php7.2-mysql \
+        php7.2-mbstring \
         php-xml \ 
         unzip \
         wget \
