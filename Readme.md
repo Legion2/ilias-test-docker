@@ -1,6 +1,6 @@
-Pull this image for docker hub:
+Pull this image for GitHun Container Registry:
 ```
-docker pull legion2/ilias-test-docker
+docker pull ghcr.io/legion2/ilias-test-docker:latest
 ```
 
 ## Getting Started
